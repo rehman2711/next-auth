@@ -7,23 +7,12 @@ const Dashboard = () => {
   const { data: session, status } = useSession();
   console.log(session);
 
-  useEffect(()=>{
-    console.log(session?.user?.image);
-    if(session?.user?.image?.includes("google")){
-      toast.success("Logged in with Google Account");
-    }
-
-    if(session?.user?.image?.includes("github")){
-      toast.success("Logged in with GitHub Account");
-    }
-
-  },[session]);
-
   return (
     <>
       <div className="h-screen flex justify-center items-center bg-gray-100 px-4">
-        <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-sm flex flex-col">
-          <div className="flex justify-between items-center border-b border-gray-200 pb-4">
+        {/* Card */}
+        <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md flex flex-col">
+          <div className="flex gap-4 items-center border-b border-gray-200 pb-4">
             <img
               src={
                 session?.user?.image ||

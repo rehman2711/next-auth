@@ -26,9 +26,9 @@ const auth = NextAuth({
       async authorize(credentials) {
         const TEST_USER = {
           id: "1",
-          name: "Admin",
-          email: "admin@gmail.com",
-          password: "admin@1234",
+          name: "Rehman Kalawant",
+          email: "rehmankalawant@gmail.com",
+          password: "rehman@1234",
         };
 
         if (!credentials) {
