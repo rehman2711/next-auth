@@ -11,7 +11,7 @@ export const ThemeLayoutComponent = () => {
     setMounted(true);
   }, []);
 
-  // 🚫 Prevent render until client mounts
+  // Prevent render until client mounts
   if (!mounted) return null;
 
   return (

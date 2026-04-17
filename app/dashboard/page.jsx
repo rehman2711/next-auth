@@ -24,12 +24,12 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
+import LoadingScreen from "@/components/ui/spinner";
 
 const Dashboard = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  // 🧠 Memoized expiry formatting (avoid recomputation + errors)
   const formattedExpiry = useMemo(() => {
     if (!session?.expires) return "Not available";
 
@@ -52,16 +52,14 @@ const Dashboard = () => {
     return `${datePart} • ${timePart}`;
   }, [session?.expires]);
 
-  // 🧠 Handle loading state properly
   if (status === "loading") {
     return (
       <div className="h-screen flex justify-center items-center">
-        <p className="text-muted-foreground">Loading session...</p>
+        <LoadingScreen/>
       </div>
     );
   }
 
-  // 🧠 Handle unauthenticated case explicitly
   if (!session) {
     router.push("/");
     return null;
