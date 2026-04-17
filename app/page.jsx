@@ -3,7 +3,7 @@ import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,13 +16,17 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTheme } from "next-themes";
 
 export default function Home() {
   const router = useRouter();
 
+  const { theme } = useTheme();
+
+  console.log(theme);
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleCredLogin = async (e) => {
     e.preventDefault();
@@ -50,7 +54,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <Card className="w-full max-w-sm">
           <CardHeader>
             <CardTitle>Login to your account</CardTitle>
@@ -133,19 +137,45 @@ export default function Home() {
           </CardFooter>
         </Card>
 
-        <div className="text-black rounded-md text-sm flex flex-col justify-center items-center absolute top-7 right-14 shadow-[43px_41px_0px_0px_rgba(0,0,0,0.04),34px_34px_0px_0px_rgba(0,0,0,0.2),26px_26px_0px_0px_rgba(0,0,0,0.4),18px_18px_0px_0px_rgba(0,0,0,0.7),10px_10px_0px_0px_#000000]">
-          <div>
-            {" "}
-            <div className="rounded-md border px-4 py-2 text-sm">
-              <p className="font-medium">Email Address</p>
-              <p className="text-muted-foreground">rehmankalawant@gmail.com</p>
-            </div>
-            <div className="rounded-md border px-4 py-2 text-sm">
-              <p className="font-medium">Password</p>
-              <p className="text-muted-foreground">rehman@1234</p>
+        {theme === "light" && (
+          <div className="text-black rounded-md text-sm flex flex-col justify-center items-center absolute top-7 left-7 shadow-[43px_41px_0px_0px_rgba(0,0,0,0.04),34px_34px_0px_0px_rgba(0,0,0,0.2),26px_26px_0px_0px_rgba(0,0,0,0.4),18px_18px_0px_0px_rgba(0,0,0,0.7),10px_10px_0px_0px_#000000]">
+            <div>
+              {" "}
+              <div className="rounded-md border px-4 py-2 text-sm">
+                <p className="font-medium">Email Address</p>
+                <p className="text-muted-foreground">
+                  rehmankalawant@gmail.com
+                </p>
+              </div>
+              <div className="rounded-md border px-4 py-2 text-sm">
+                <p className="font-medium">Password</p>
+                <p className="text-muted-foreground">rehman@1234</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+
+        {theme === "dark" && (
+          <div
+            className="text-black dark:text-white rounded-md text-sm flex flex-col justify-center items-center absolute top-7 left-7 
+            shadow-[43px_41px_0px_0px_rgba(0,0,0,0.04),34px_34px_0px_0px_rgba(0,0,0,0.2),26px_26px_0px_0px_rgba(0,0,0,0.4),18px_18px_0px_0px_rgba(0,0,0,0.7),10px_10px_0px_0px_#000000]
+            dark:shadow-[43px_41px_0px_0px_rgba(255,255,255,0.02),34px_34px_0px_0px_rgba(255,255,255,0.05),26px_26px_0px_0px_rgba(255,255,255,0.08),18px_18px_0px_0px_rgba(255,255,255,0.12),10px_10px_0px_0px_rgba(255,255,255,0.2)]"
+          >
+            <div>
+              <div className="rounded-md border px-4 py-2 text-sm bg-white dark:bg-neutral-900">
+                <p className="font-medium">Email Address</p>
+                <p className="text-muted-foreground">
+                  rehmankalawant@gmail.com
+                </p>
+              </div>
+
+              <div className="rounded-md border px-4 py-2 text-sm bg-white dark:bg-neutral-900">
+                <p className="font-medium">Password</p>
+                <p className="text-muted-foreground">rehman@1234</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
