@@ -47,7 +47,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-6 sm:py-10">
-      
       <h1 className="text-center text-2xl sm:text-4xl font-extrabold tracking-tight uppercase font-galindo mb-6 sm:mb-10">
         Nextauth Authentication
       </h1>
@@ -56,24 +55,16 @@ export default function Home() {
         <Card>
           <CardHeader>
             <CardTitle>Login to your account</CardTitle>
-            <CardDescription>
-              Enter your email below to login .
-            </CardDescription>
+            <CardDescription>Enter your email below to login .</CardDescription>
             <CardAction>
-              <Button
-                variant="link"
-                onClick={() => router.push("/")}
-              >
+              <Button variant="link" onClick={() => router.push("/")}>
                 Sign Up
               </Button>
             </CardAction>
           </CardHeader>
 
           <CardContent>
-            <form
-              className="space-y-5"
-              onSubmit={handleCredLogin}
-            >
+            <form className="space-y-5" onSubmit={handleCredLogin}>
               <div className="flex flex-col gap-5">
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
@@ -116,9 +107,7 @@ export default function Home() {
             <Button
               variant="outline"
               className="w-full flex gap-3"
-              onClick={() =>
-                signIn("google", { callbackUrl: "/dashboard" })
-              }
+              onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
             >
               <Image src="/google.png" width={16} height={16} alt="google" />
               <span>Login with Google</span>
@@ -127,9 +116,7 @@ export default function Home() {
             <Button
               variant="outline"
               className="w-full flex gap-3"
-              onClick={() =>
-                signIn("github", { callbackUrl: "/dashboard" })
-              }
+              onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
             >
               <Image src="/github.svg" width={16} height={16} alt="github" />
               <span>Login with GitHub</span>
